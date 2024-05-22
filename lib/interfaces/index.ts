@@ -27,3 +27,7 @@ export interface ExpenseFrom {
   description: string;
   categoryId: string;
 }
+
+export interface ICategoryForm {
+  categoryName: string;
+}

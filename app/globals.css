@@ -16,9 +16,10 @@
 
 }
 
-.text-blue{
+.text-dark-blue{
   color: #3f5f8a;
 }
+
 
 .custom-btn-primary{
   background-color: var(--bs-primary) !important;

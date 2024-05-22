@@ -43,8 +43,6 @@ export default function ExpensesFrom({
     fetchExpenses();
   }, []);
 
-  console.log("edit data", editData?.type);
-
   const initialValues: ExpenseFrom = {
     type: editData?.type ?? ExpenseTypeEnum.CashIn,
     date: editData?.date
@@ -66,7 +64,6 @@ export default function ExpensesFrom({
     values: ExpenseFrom,
     { setSubmitting, validateForm, setErrors }: FormikHelpers<ExpenseFrom>
   ) => {
-    console.log("handel submit values", values);
     if (isEdit) {
       try {
         const response = await fetch(
@@ -102,7 +99,6 @@ export default function ExpensesFrom({
             body: JSON.stringify({ ...values }),
           }
         );
-        console.log("response", response);
 
         if (response.ok) {
           toast.success("Expenses added successfully");
@@ -143,13 +139,10 @@ export default function ExpensesFrom({
       validateOnBlur={false}
     >
       {({ errors, handleSubmit, setFieldValue, values, isSubmitting }) => {
-        // console.log("formik errors", errors);
-        // console.log("formik values", values);
-
         return (
           <React.Fragment>
             <Toaster />
-            <div className=" d-flex justify-content-between align-items-center p-3  mb-5 bg-secondary text-blue">
+            <div className=" d-flex justify-content-between align-items-center p-3  mb-5 bg-secondary text-dark-blue">
               <h5 className="mx-auto fs-6 fw-bold mb-0 text-center">
                 {isEdit ? "Edit" : "Add"} Expenses
               </h5>
