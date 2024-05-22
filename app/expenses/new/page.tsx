@@ -1,5 +1,5 @@
-import React from "react";
+import ExpensesFrom from "@/components/Expenses/ExpensesFrom";
 
 export default function page() {
-  return <div> New expense page</div>;
+  return <ExpensesFrom />;
 }

@@ -19,3 +19,11 @@ export interface Expense {
   description: string;
   categoryId: string;
 }
+
+export interface ExpenseFrom {
+  type: ExpenseTypeEnum | undefined;
+  date: Date | string;
+  amount: number | null | undefined;
+  description: string;
+  categoryId: string;
+}

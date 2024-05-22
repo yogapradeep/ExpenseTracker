@@ -3,6 +3,7 @@ import { Category, Expense } from "@/lib/interfaces";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { Toaster } from "react-hot-toast";
 
 export default function ExpensesList() {
   const router = useRouter();
@@ -33,8 +34,8 @@ export default function ExpensesList() {
     fetchExpenses();
   }, []);
 
-  console.log("expenses", expenses);
-  console.log("categories", categories);
+  // console.log("expenses", expenses);
+  // console.log("categories", categories);
 
   const getCategoryNameById = (id: string) => {
     const category = categories.find(
@@ -45,9 +46,15 @@ export default function ExpensesList() {
 
   return (
     <div className="">
+      <Toaster />
       <div className="d-flex justify-content-between align-items-center p-3 bg-secondary text-blue">
         <h5 className="mx-auto fs-6 fw-bold mb-0">Expense Tracking</h5>
-        <Button className="text-white rounded-0 px-4 fs-6 custom-btn-primary">
+        <Button
+          onClick={() => {
+            router.push("/expenses/new");
+          }}
+          className="text-white rounded-0 px-4 fs-6 custom-btn-primary"
+        >
           Add
         </Button>
       </div>
@@ -55,6 +62,9 @@ export default function ExpensesList() {
         <div className=" d-flex flex-column">
           {expenses.map((expense: Expense) => (
             <div
+              onClick={() => {
+                router.push(`/expenses/${expense.id}/edit`);
+              }}
               key={expense.id}
               className={`expense-item bg-secondary-subtle m-2 p-3 rounded-2 `}
             >
@@ -63,12 +73,19 @@ export default function ExpensesList() {
                   " d-flex align-items-center  justify-content-between"
                 }
               >
-                <div>{expense.type}</div>
-                <div>₹{expense.amount}</div>
+                <div> {getCategoryNameById(expense.categoryId)}</div>
+                <div
+                  className={
+                    expense.type == "Cash In" ? "text-success" : "text-danger"
+                  }
+                >
+                  <span> {expense.type == "Cash In" ? " + " : " - "}</span>₹
+                  {expense.amount}
+                </div>
               </div>
               <div>
-                <div>{expense.description}</div>
-                <div>Category: {getCategoryNameById(expense.categoryId)}</div>
+                <div>{expense.description ?? "-"}</div>
+
                 <div className="">
                   {new Date(expense.date).toLocaleDateString()}
                 </div>
