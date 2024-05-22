@@ -1,12 +1,7 @@
-import { Button } from "react-bootstrap";
+import ExpensesList from "@/components/Expenses/ExpensesList";
 
 function page() {
-  return (
-    <div>
-      <p>expense page</p>
-      <Button>test react bootstrap</Button>
-    </div>
-  );
+  return <ExpensesList />;
 }
 
 export default page;
