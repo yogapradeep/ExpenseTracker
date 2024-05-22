@@ -1,7 +1,6 @@
 import ExpensesFrom from "@/components/Expenses/ExpensesFrom";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  console.log("params", params.id);
   let editData;
   try {
     const response = await fetch(

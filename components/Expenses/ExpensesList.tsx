@@ -34,9 +34,6 @@ export default function ExpensesList() {
     fetchExpenses();
   }, []);
 
-  // console.log("expenses", expenses);
-  // console.log("categories", categories);
-
   const getCategoryNameById = (id: string) => {
     const category = categories.find(
       (category: Category) => category.id === id
@@ -47,7 +44,7 @@ export default function ExpensesList() {
   return (
     <div className="">
       <Toaster />
-      <div className="d-flex justify-content-between align-items-center p-3 bg-secondary text-blue">
+      <div className="d-flex justify-content-between align-items-center p-3 bg-secondary text-dark-blue">
         <h5 className="mx-auto fs-6 fw-bold mb-0">Expense Tracking</h5>
         <Button
           onClick={() => {
