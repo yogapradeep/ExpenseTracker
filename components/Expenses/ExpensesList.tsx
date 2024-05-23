@@ -63,36 +63,37 @@ export default function ExpensesList() {
                 router.push(`/expenses/${expense.id}/edit`);
               }}
               key={expense.id}
-              className={`expense-item bg-secondary-subtle m-2 p-3 rounded-2 `}
+              className={`  `}
             >
               <div
-                className={
-                  " d-flex align-items-center  justify-content-between"
-                }
+                className={`d-flex align-items-center  justify-content-between ${
+                  expense.type == "Cash In" ? "text-success" : "text-primary"
+                }`}
               >
-                <div> {getCategoryNameById(expense.categoryId)}</div>
-                <div
-                  className={
-                    expense.type == "Cash In" ? "text-success" : "text-danger"
-                  }
-                >
+                <p className=" fw-medium flex-grow-1 me-auto">
+                  {getCategoryNameById(expense.categoryId)}
+                </p>
+                <div>
                   <span> {expense.type == "Cash In" ? " + " : " - "}</span>₹
-                  {expense.amount}
+                  {Intl.NumberFormat("en-IN").format(expense.amount)}
                 </div>
               </div>
-              <div>
-                <div>{expense.description ?? "-"}</div>
-
-                <div className="">
-                  {new Date(expense.date).toLocaleDateString()}
-                </div>
-              </div>
+              <hr
+                className={` border  border-2 ${
+                  expense.type == "Cash In"
+                    ? "border-success"
+                    : "border-primary"
+                }`}
+              />
             </div>
           ))}
         </div>
       </div>
       <div className="d-flex mt-3">
-        <Button className="text-white rounded-0 px-4 py-3  fs-6 flex-grow-1 custom-btn-primary ">
+        <Button
+          onClick={() => router.push("/expenses")}
+          className="text-white rounded-0 px-4 py-3  fs-6 flex-grow-1 custom-btn-primary "
+        >
           Expense
         </Button>
         <Button
